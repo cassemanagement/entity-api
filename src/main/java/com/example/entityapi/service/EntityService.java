@@ -1,7 +1,7 @@
 package com.example.entityapi.service;
 
 
-import com.example.entityapi.model.Entity;
+import com.example.entityapi.model.entity.Entity;
 import com.example.entityapi.repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service public class EntityService
+@Service
+public class EntityService
 {
 	@Autowired
 	private EntityRepository repository;
@@ -28,7 +29,11 @@ import java.util.List;
 	{
 		final String name = "bob";
 		final String type = "person";
-		final Entity example = new Entity(type + "_" + name, name, type);
+
+		final Entity example = new Entity();
+		example.setId(type + "_" + name);
+		example.setType(type);
+		example.setName(name);
 
 		var saved = repository.save(example);
 

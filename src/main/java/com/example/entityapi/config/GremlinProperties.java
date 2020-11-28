@@ -7,8 +7,12 @@ import lombok.Setter;
 import org.apache.tinkerpop.gremlin.driver.ser.Serializers;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor @ConfigurationProperties("gremlin")
-public class GremlinProperties
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ConfigurationProperties(prefix = "gremlin")
+class GremlinProperties
 {
 	private String endpoint;
 

@@ -1,11 +1,16 @@
-package com.example.entityapi.model;
+package com.example.entityapi.model.graph;
 
 import com.microsoft.spring.data.gremlin.annotation.Edge;
 import com.microsoft.spring.data.gremlin.annotation.EdgeFrom;
 import com.microsoft.spring.data.gremlin.annotation.EdgeTo;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-@Edge public class Relation
+import javax.validation.constraints.NotNull;
+
+@Edge
+@Data
+public class CoreEdge<V extends CoreVertex>
 {
 	@Id
 	private String id;
@@ -13,8 +18,10 @@ import org.springframework.data.annotation.Id;
 	private String name;
 
 	@EdgeFrom
-	private Entity personFrom;
+	@NotNull
+	private V from;
 
 	@EdgeTo
-	private Entity personTo;
+	@NotNull
+	private V to;
 }

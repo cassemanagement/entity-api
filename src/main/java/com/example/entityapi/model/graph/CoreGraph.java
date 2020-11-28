@@ -1,28 +1,31 @@
-package com.example.entityapi.model;
+package com.example.entityapi.model.graph;
 
 import com.microsoft.spring.data.gremlin.annotation.EdgeSet;
 import com.microsoft.spring.data.gremlin.annotation.Graph;
 import com.microsoft.spring.data.gremlin.annotation.VertexSet;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Graph public class Network
+@Graph
+@Data
+public class CoreGraph<V extends CoreVertex, E extends CoreEdge<V>>
 {
 	@Id
 	private String id;
 
 	@EdgeSet
-	private List<Object> edges;
+	private List<E> edges;
 
 	@VertexSet
-	private List<Object> vertexes;
+	private List<V> vertexes;
 
-	public Network()
+	public CoreGraph()
 	{
-		this.edges = new ArrayList<Object>();
-		this.vertexes = new ArrayList<Object>();
+		this.edges = new ArrayList<>();
+		this.vertexes = new ArrayList<>();
 	}
 
 }
