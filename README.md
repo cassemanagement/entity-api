@@ -24,27 +24,28 @@ setup.
 Next, create a file in `/resources/cosmosdb.yaml` with the following content:
 
 ```yaml
-hosts: [$name$.gremlin.cosmosdb.azure.com]
-port: 443
-username: /dbs/$database$/colls/$collection$
-password: $masterKey$
-connectionPool: {
-  enableSsl: true}
-serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV2d0, config: { serializeResultToString: true }}
+gremlin:
+  hosts: $name$.gremlin.cosmosdb.azure.com
+  port: 443
+  username: /dbs/$database$/colls/$collection$
+  password: $password
+  sslEnabled: false
+  telemetryAllowed: true 
+  maxContentLength: 1000
 ```
 
 Replacing the details with the following:
 
  Setting | Suggested Value | Description |
 | ------- | --------------- | ----------- |
-| hosts   | [***.gremlin.cosmosdb.azure.com] | This is the Gremlin URI value on the Overview page of the Azure portal, in square brackets, with the trailing :443/ removed.  This value can also be retrieved from the Keys tab, using the URI value by removing https://, changing documents to graphs, and removing the trailing :443/. |
+| hosts   | ***.gremlin.cosmosdb.azure.com | This is the Gremlin URI value on the Overview page of the Azure portal, in square brackets, with the trailing :443/ removed.  This value can also be retrieved from the Keys tab, using the URI value by removing https://, changing documents to graphs, and removing the trailing :443/. |
 | port | 443 | Set the port to 443 |
 | username | `/dbs/<db>/colls/<coll>` | The resource of the form `/dbs/<db>/colls/<coll>` where `<db>` is your database name and `<coll>` is your collection name. |
 | password | Your primary key | This is your primary key, which you can retrieve from the Keys page of the Azure portal, in the Primary Key box. Use the copy button on the left side of the box to copy the value. |
-| connectionPool | `{enableSsl: true}` | Your connection pool setting for SSL. |
-| serializer | { className: org.apache.tinkerpop.gremlin. driver.ser.GraphSONMessageSerializerV1d0, config: { serializeResultToString: true }} | Set to this value and delete any \n line breaks and spaces when pasting in the value. |
+| telemetryAllowed | true | Set false to disable telemetry |
+| maxContentLength | 1000 | Max content length. |
 
-Built from [Azure's example](https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-java).
+Built from [Azure's example](https://github.com/microsoft/spring-data-gremlin).
 
 
 ## Build/Run
