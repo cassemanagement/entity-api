@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * CRUDL Services for Entity vertices.
@@ -40,7 +39,7 @@ public class EntityService implements CrudlRestService<Entity>
 	}
 
 	@Override
-	public Collection<Entity> getByIds(Set ids)
+	public Collection<Entity> getByIds(Collection ids)
 	{
 		logger.debug("Find entities");
 		var entities = new HashSet<Entity>();

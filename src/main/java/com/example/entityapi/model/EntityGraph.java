@@ -6,8 +6,8 @@ import com.microsoft.spring.data.gremlin.annotation.VertexSet;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Entity graph model.
@@ -16,19 +16,18 @@ import java.util.Set;
 @Data
 public class EntityGraph
 {
-
 	@Id
 	private String id;
 
 	@EdgeSet
-	private Set<EntityLink> edges;
+	private List<EntityLink> edges;
 
 	@VertexSet
-	private Set<Entity> vertexes;
+	private List<Entity> vertices;
 
 	public EntityGraph()
 	{
-		this.edges = new HashSet<>();
-		this.vertexes = new HashSet<>();
+		this.edges = new ArrayList<>();
+		this.vertices = new ArrayList<>();
 	}
 }

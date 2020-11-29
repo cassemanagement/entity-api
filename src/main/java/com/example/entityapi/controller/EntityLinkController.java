@@ -43,6 +43,13 @@ class EntityLinkController
 		return entityLinkService.getByIds(ids);
 	}
 
+	@GetMapping("/entity/edges/find/vertex/{entityId}")
+	public Collection<EntityLink> find(@PathVariable String entityId)
+	{
+		logger.debug("Find entity links related entity: " + entityId);
+		return entityLinkService.findEntityLinksRelatedToEntity(entityId);
+	}
+
 	@PostMapping("/entity/edges")
 	public EntityLink create(@RequestBody @Valid EntityLink entityLink)
 	{

@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collection;
-import java.util.Set;
 
 /**
  * Entity graph REST API with CRUD endpoints.
@@ -21,20 +19,6 @@ class EntityGraphController
 	private EntityGraphService entityGraphService;
 
 	private Logger logger = LoggerFactory.getLogger(EntityGraphController.class);
-
-	@GetMapping("/entity/graph/{id}")
-	public EntityGraph get(@PathVariable String id)
-	{
-		logger.debug("Get entity graph: " + id);
-		return entityGraphService.get(id);
-	}
-
-	@GetMapping("/entity/graph/find")
-	public Collection<EntityGraph> find(@RequestBody Set<String> ids)
-	{
-		logger.debug("Find entity graphs by ids");
-		return entityGraphService.getByIds(ids);
-	}
 
 	@PostMapping("/entity/graph")
 	public EntityGraph create(@RequestBody @Valid EntityGraph entityGraph)

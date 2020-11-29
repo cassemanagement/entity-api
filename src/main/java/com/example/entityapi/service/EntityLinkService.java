@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * CRUDL Services for Entity edges.
@@ -39,7 +39,7 @@ public class EntityLinkService implements CrudlRestService<EntityLink>
 	}
 
 	@Override
-	public Collection<EntityLink> getByIds(Set ids)
+	public Collection<EntityLink> getByIds(Collection ids)
 	{
 		logger.debug("Find entity links");
 		var entities = new HashSet<EntityLink>();
@@ -60,5 +60,20 @@ public class EntityLinkService implements CrudlRestService<EntityLink>
 	{
 		logger.debug("Delete entity link: " + id);
 		repository.deleteById(id);
+	}
+
+	/**
+	 * Find links related to the provided entity id.
+	 * TODO Improve performance by filtering database side.
+	 *
+	 * @param id Entity id.
+	 * @return Links related to entity.
+	 */
+	public Collection<EntityLink> findEntityLinksRelatedToEntity(String id)
+	{
+		logger.debug("Find entity links related to entity: " + id);
+		return list().stream()
+					 .filter(x -> x.getFrom().getId().equals(id) || x.getTo().getId().equals(id))
+					 .collect(Collectors.toList());
 	}
 }
