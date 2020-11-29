@@ -9,6 +9,26 @@ A REST API to provide CRUDL and query functionality on a graph of Entities using
 
 The API will be deployed as a serverless function on either AWS or Azure and use either a Neptune or Cosmos database, respectively.
 
+
+## TODOs
+
+* Return links with entities (graph?)
+* Setup as modules
+* Write tests
+    * Controller - check endpoints call service & validation
+    * Service - calls repository
+    * Component test (e2e)
+* Setup REST Links
+* Setup REST Graph
+
+* Azure Function setup
+* Create build script (CI/CD)
+
+Stretch:
+* AWS Lambda setup
+* Docker deployable
+
+
 ## Technology
 
 * Java 11
@@ -44,7 +64,8 @@ Replacing the details with the following:
 | telemetryAllowed | true | Set false to disable telemetry |
 | maxContentLength | 1000 | Max content length. |
 
-Built from [Azure's example](https://github.com/microsoft/spring-data-gremlin).
+Further information about the Gremlin API and this setup can be found on this 
+[MS Azure example](https://github.com/microsoft/spring-data-gremlin).
 
 
 ## Build/Run
