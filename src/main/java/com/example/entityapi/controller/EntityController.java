@@ -44,7 +44,7 @@ class EntityController
 		return entityService.getByIds(ids);
 	}
 
-	@PostMapping("/entity/vertices/vertex")
+	@PostMapping("/entity/vertices")
 	public Entity create(@RequestBody @Valid Entity entity)
 	{
 		logger.debug("Create new entity");
