@@ -18,16 +18,19 @@ The API will be deployed as a serverless function on either AWS or Azure and use
     * Controller - check endpoints call service & validation
     * Service - calls repository
     * Component test (e2e)
+* Exception handling
 * Setup REST Links
 * Setup REST Graph
 
 * Azure Function setup
+* AD Integration
 * Create build script (CI/CD)
 
 Stretch:
 * AWS Lambda setup
 * Docker deployable
-
+* Versioning
+* Raise events/audit trail
 
 ## Technology
 
