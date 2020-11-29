@@ -1,4 +1,4 @@
-package com.example.entityapi.model.graph;
+package com.example.entityapi.model.graph.core;
 
 import com.microsoft.spring.data.gremlin.annotation.EdgeSet;
 import com.microsoft.spring.data.gremlin.annotation.Graph;

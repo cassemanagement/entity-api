@@ -21,17 +21,16 @@ The API will be deployed as a serverless function on either AWS or Azure and use
 Ensure you have a Cosmos DB account with Gremlin enabled, and a Gremlin graph database 
 setup.
 
-Next, create a file in `/resources/cosmosdb.yaml` with the following content:
+Next, create a file in `/resources/database.properties` with the following content:
 
-```yaml
-gremlin:
-  hosts: $name$.gremlin.cosmosdb.azure.com
-  port: 443
-  username: /dbs/$database$/colls/$collection$
-  password: $password
-  sslEnabled: false
-  telemetryAllowed: true 
-  maxContentLength: 1000
+```properties
+gremlin.hosts=$name$.gremlin.cosmosdb.azure.com
+gremlin.port=443
+gremlin.username=/dbs/$database$/colls/$collection$
+gremlin.password=$password
+gremlin.sslEnabled=false
+gremlin.telemetryAllowed=true 
+gremlin.maxContentLength=1000
 ```
 
 Replacing the details with the following:

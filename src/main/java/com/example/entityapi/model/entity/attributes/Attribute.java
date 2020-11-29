@@ -1,4 +1,4 @@
-package com.example.entityapi.model.entity;
+package com.example.entityapi.model.entity.attributes;
 
 import lombok.Data;
 

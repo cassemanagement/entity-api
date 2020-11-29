@@ -1,4 +1,4 @@
-package com.example.entityapi.model.entity;
+package com.example.entityapi.model.entity.attributes;
 
 import com.microsoft.spring.data.gremlin.annotation.GeneratedValue;
 import lombok.Data;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 public class Comment
 {
 	@Id
-	@GeneratedValue
+	@GeneratedValue // todo fix
 	private String id;
 
 	@NotBlank

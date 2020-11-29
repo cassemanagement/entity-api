@@ -1,6 +1,6 @@
-package com.example.entityapi.model.entity;
+package com.example.entityapi.model;
 
-import com.example.entityapi.model.graph.CoreEdge;
+import com.example.entityapi.model.graph.core.CoreEdge;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,4 +1,4 @@
-package com.example.entityapi.model.graph;
+package com.example.entityapi.model.graph.core;
 
 import com.microsoft.spring.data.gremlin.annotation.Vertex;
 import lombok.AllArgsConstructor;
