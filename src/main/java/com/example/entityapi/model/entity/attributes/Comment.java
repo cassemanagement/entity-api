@@ -6,6 +6,9 @@ import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Model for comments.
+ */
 @Data
 public class Comment
 {

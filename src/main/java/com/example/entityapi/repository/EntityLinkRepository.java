@@ -1,13 +1,13 @@
 package com.example.entityapi.repository;
 
-import com.example.entityapi.model.Entity;
+import com.example.entityapi.model.EntityLink;
 import com.microsoft.spring.data.gremlin.repository.GremlinRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Repository for entity vertices.
+ * Repository for entity edges.
  */
 @Repository
-public interface EntityRepository extends GremlinRepository<Entity, String>
+public interface EntityLinkRepository extends GremlinRepository<EntityLink, String>
 {
 }

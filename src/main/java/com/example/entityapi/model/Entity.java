@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+/**
+ * Entity vertex model.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor

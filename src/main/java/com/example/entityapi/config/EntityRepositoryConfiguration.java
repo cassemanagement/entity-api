@@ -8,7 +8,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-
+/**
+ * Loads the gremlin database details from config.
+ */
 @Configuration
 @EnableGremlinRepositories(basePackages = "com.example.entityapi.repository")
 @EnableConfigurationProperties(GremlinProperties.class)
@@ -18,11 +20,17 @@ public class EntityRepositoryConfiguration extends AbstractGremlinConfiguration
 	@Autowired
 	private GremlinProperties gremlinProps;
 
-	@Override public GremlinConfig getGremlinConfig()
+	@Override
+	public GremlinConfig getGremlinConfig()
 	{
-		return new GremlinConfig(gremlinProps.getEndpoint(), gremlinProps.getPort(), gremlinProps.getUsername(),
-								 gremlinProps.getPassword(), gremlinProps.isSslEnabled(),
-								 gremlinProps.isTelemetryAllowed(), gremlinProps.getSerializer(),
-								 gremlinProps.getMaxContentLength());
+		return new GremlinConfig(gremlinProps.getEndpoint(),
+								 gremlinProps.getPort(),
+								 gremlinProps.getUsername(),
+								 gremlinProps.getPassword(),
+								 gremlinProps.isSslEnabled(),
+								 gremlinProps.isTelemetryAllowed(),
+								 gremlinProps.getSerializer(),
+								 gremlinProps.getMaxContentLength()
+		);
 	}
 }

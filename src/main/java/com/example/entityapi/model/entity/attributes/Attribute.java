@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Additional pieces of information for entities.
+ */
 @Data
 public class Attribute
 {
@@ -18,5 +21,5 @@ public class Attribute
 
 	boolean isRequired;
 
-	boolean isImportant;
+	VisibilityType visibility = VisibilityType.MINIMISED;
 }

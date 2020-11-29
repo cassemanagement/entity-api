@@ -7,6 +7,9 @@ import lombok.Setter;
 import org.apache.tinkerpop.gremlin.driver.ser.Serializers;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Model for gremlin database config. See README for usage.
+ */
 @Getter
 @Setter
 @AllArgsConstructor

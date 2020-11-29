@@ -12,6 +12,9 @@ import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Set;
 
+/**
+ * Entity vertices REST API with CRUDL endpoints.
+ */
 @RestController
 class EntityController
 {
@@ -20,35 +23,35 @@ class EntityController
 
 	private Logger logger = LoggerFactory.getLogger(EntityController.class);
 
-	@GetMapping("/entities")
+	@GetMapping("/entity/vertices")
 	public Collection<Entity> list()
 	{
 		logger.debug("List entities");
 		return entityService.list();
 	}
 
-	@GetMapping("/entities/entity/{id}")
+	@GetMapping("/entity/vertices/vertex/{id}")
 	public Entity get(@PathVariable String id)
 	{
 		logger.debug("Get entity: " + id);
 		return entityService.get(id);
 	}
 
-	@GetMapping("/entities/find")
+	@GetMapping("/entity/vertices/find")
 	public Collection<Entity> find(@RequestBody Set<String> ids)
 	{
-		logger.debug("Find entities");
+		logger.debug("Find entities by ids");
 		return entityService.getByIds(ids);
 	}
 
-	@PostMapping("/entities/entity")
+	@PostMapping("/entity/vertices/vertex")
 	public Entity create(@RequestBody @Valid Entity entity)
 	{
 		logger.debug("Create new entity");
 		return entityService.createUpdate(entity);
 	}
 
-	@PutMapping("/entities/entity/{id}")
+	@PutMapping("/entity/vertices/vertex/{id}")
 	public Entity put(@PathVariable String id, @RequestBody @Valid Entity entity)
 	{
 		logger.debug("Update entity: " + id);
@@ -61,17 +64,19 @@ class EntityController
 		return entityService.createUpdate(entity);
 	}
 
-	@DeleteMapping("/entities/entity/{id}")
+	@DeleteMapping("/entity/vertices/vertex/{id}")
 	public void delete(@PathVariable String id)
 	{
 		logger.debug("Delete entity: " + id);
 		entityService.delete(id);
 	}
 
-	@PatchMapping("/entities/entity/{id}/comment")
+	@PatchMapping("/entity/vertices/vertex/{id}/comment")
 	public Entity comment(@PathVariable String id, @RequestBody @Valid Comment comment)
 	{
 		logger.debug("Add comment to entity: " + id);
-		return entityService.comment(id, comment);
+		return entityService.comment(id,
+									 comment
+									);
 	}
 }

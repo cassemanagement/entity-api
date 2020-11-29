@@ -19,8 +19,6 @@ The API will be deployed as a serverless function on either AWS or Azure and use
     * Service - calls repository
     * Component test (e2e)
 * Exception handling
-* Setup REST Links
-* Setup REST Graph
 
 * Azure Function setup
 * AD Integration

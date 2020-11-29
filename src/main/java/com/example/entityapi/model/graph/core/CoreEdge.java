@@ -8,6 +8,9 @@ import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * Core model for a gremlin graph edge.
+ */
 @Edge
 @Data
 public class CoreEdge<V extends CoreVertex>

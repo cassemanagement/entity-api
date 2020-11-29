@@ -6,9 +6,12 @@ import com.microsoft.spring.data.gremlin.annotation.VertexSet;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+/**
+ * Core model for a gremlin graph.
+ */
 @Graph
 @Data
 public class CoreGraph<V extends CoreVertex, E extends CoreEdge<V>>
@@ -17,15 +20,15 @@ public class CoreGraph<V extends CoreVertex, E extends CoreEdge<V>>
 	private String id;
 
 	@EdgeSet
-	private List<E> edges;
+	private Set<E> edges;
 
 	@VertexSet
-	private List<V> vertexes;
+	private Set<V> vertexes;
 
 	public CoreGraph()
 	{
-		this.edges = new ArrayList<>();
-		this.vertexes = new ArrayList<>();
+		this.edges = new HashSet<>();
+		this.vertexes = new HashSet<>();
 	}
 
 }

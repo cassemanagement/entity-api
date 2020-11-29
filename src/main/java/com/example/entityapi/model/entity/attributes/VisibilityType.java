@@ -3,19 +3,18 @@ package com.example.entityapi.model.entity.attributes;
 import lombok.Getter;
 
 /**
- * Variable types for attributes.
+ * Visibility type to determine when an attribute should be shown to users.
  */
-public enum AttributeType
+public enum VisibilityType
 {
-	STRING("String"),
-	NUMBER("Number"),
-	DATE("Date"),
-	BOOLEAN("Boolean");
+	ALWAYS("Always"),
+	MINIMISED("Minimised"),
+	HIDDEN("Hidden");
 
 	@Getter
 	private final String type;
 
-	AttributeType(String type)
+	VisibilityType(String type)
 	{
 		this.type = type;
 	}

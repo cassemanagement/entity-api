@@ -12,8 +12,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * CRUDL Services for Entity vertices.
+ */
 @Service
-public class EntityService implements IRestService<Entity>
+public class EntityService implements CrudlRestService<Entity>
 {
 	@Autowired
 	private EntityRepository repository;

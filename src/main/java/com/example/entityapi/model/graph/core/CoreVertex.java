@@ -8,6 +8,9 @@ import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Core model for a gremlin graph vertex.
+ */
 @Vertex
 @Data
 @AllArgsConstructor

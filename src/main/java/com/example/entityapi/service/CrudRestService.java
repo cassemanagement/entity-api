@@ -3,10 +3,13 @@ package com.example.entityapi.service;
 import java.util.Collection;
 import java.util.Set;
 
-public interface IRestService<T>
+/**
+ * CRUD Rest Service.
+ *
+ * @param <T> Object type being handled.
+ */
+public interface CrudRestService<T>
 {
-	Collection<T> list();
-
 	T get(String id);
 
 	Collection<T> getByIds(Set ids);
