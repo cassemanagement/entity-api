@@ -92,3 +92,8 @@ To run:
 ```bash
 mvn spring-boot:run
 ```
+
+## Swagger Documentation
+
+Swagger docs in JSON: http://localhost:8080/v3/api-docs
+Swagger UI: http://localhost:8080/swagger-ui/index.html?url=/v3/api-docs
