@@ -39,8 +39,7 @@ Stretch:
 
 ## Setup (Azure)
 
-Ensure you have a Cosmos DB account with Gremlin enabled, and a Gremlin graph database 
-setup.
+Ensure you have a Cosmos DB account with Gremlin enabled and a Gremlin graph database, and a storage account:
 
 Next, create a file in `/resources/database.properties` with the following content:
 
@@ -52,11 +51,15 @@ gremlin.password=$password
 gremlin.sslEnabled=false
 gremlin.telemetryAllowed=true 
 gremlin.maxContentLength=1000
+azure.storage.account.name=
+azure.storage.account.key=
 ```
 
-Also, environment variables
+Alternatively, these settings can also be configured from environment variables and the command line:
 
-gremlin_endpoint= gremlin_port= gremlin_username= gremlin_password= gremlin_sslEnabled=
+```bash
+azure_storage_account_name= azure_storage_account_key= gremlin_endpoint= gremlin_port= gremlin_username= gremlin_password= gremlin_sslEnabled= ./mvnw spring-boot:run
+```
 
 Replacing the details with the following:
 
