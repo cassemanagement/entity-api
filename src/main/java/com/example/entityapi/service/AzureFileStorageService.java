@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CloudFileStorageService {
+public class AzureFileStorageService implements FileStorageService {
 
     @Value("${azure.storage.entity.images.share.name}")
     private String shareName;
