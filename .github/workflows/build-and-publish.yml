@@ -34,7 +34,7 @@ jobs:
       with:
         java-version: 11
     - name: Install
-      run: mvn install
+      run: mvn install --no-transfer-progress
 
     - uses: actions/upload-artifact@master
       with:

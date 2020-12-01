@@ -54,6 +54,10 @@ gremlin.telemetryAllowed=true
 gremlin.maxContentLength=1000
 ```
 
+Also, environment variables
+
+gremlin_endpoint= gremlin_port= gremlin_username= gremlin_password= gremlin_sslEnabled=
+
 Replacing the details with the following:
 
  Setting | Suggested Value | Description |

@@ -14,7 +14,6 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @EnableGremlinRepositories(basePackages = "com.example.entityapi.repository")
 @EnableConfigurationProperties(GremlinProperties.class)
-@PropertySource("classpath:database.properties")
 public class EntityRepositoryConfiguration extends AbstractGremlinConfiguration
 {
 	@Autowired
