@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
 import org.zalando.problem.ProblemModule;
 import org.zalando.problem.violations.ConstraintViolationProblemModule;
 
@@ -19,10 +21,18 @@ public class EntityApiApplication {
 
 	/**
 	 * Creates object mapper with zalando problem modules.
-	 * @return
 	 */
 	@Bean
 	public ObjectMapper objectMapper() {
 		return new ObjectMapper().registerModules(new ProblemModule(), new ConstraintViolationProblemModule());
+	}
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+		PropertySourcesPlaceholderConfigurer propsConfig = new PropertySourcesPlaceholderConfigurer();
+		propsConfig.setLocation(new ClassPathResource("git.properties"));
+		propsConfig.setIgnoreResourceNotFound(true);
+		propsConfig.setIgnoreUnresolvablePlaceholders(true);
+		return propsConfig;
 	}
 }
