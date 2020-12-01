@@ -38,5 +38,7 @@ public class Entity
 	@Valid
 	private List<Comment> comments;
 
+	private String createdBy;
+
 	private String createdDate;
 }

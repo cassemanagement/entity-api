@@ -31,4 +31,8 @@ public class EntityLink
 	private Entity to;
 
 	private Map<String, Object> properties = new HashMap<>();
+
+	private String createdBy;
+
+	private String createdDate;
 }
