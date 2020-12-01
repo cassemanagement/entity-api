@@ -5,6 +5,8 @@ import java.net.URLConnection;
 
 import com.example.entityapi.service.FileStorageService;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class FileUploadController {
 
+    private final static Logger logger = LogManager.getLogger(FileUploadController.class);
+
     private final FileStorageService storageService;
 
     @Autowired
@@ -32,19 +36,31 @@ public class FileUploadController {
     @ResponseBody
     public ResponseEntity<byte[]> serveFile(@PathVariable String filename) {
 
+        logger.debug(String.format("Serving %s.", filename));
+
         var data = storageService.downloadFile(filename);
         // Set headers
-        final HttpHeaders headers = new HttpHeaders();        
+        final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(URLConnection.guessContentTypeFromName(filename)));
 
-        return new ResponseEntity<byte[]>(data, headers, HttpStatus.OK);
+        var entity = new ResponseEntity<byte[]>(data, headers, HttpStatus.OK);
+
+        logger.debug(String.format("Serving %s complete.", filename));
+
+        return entity;
     }
 
     @PostMapping("/files/")
-    public ResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<Void> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+
+        logger.debug(String.format("Upload %s.", file));
 
         storageService.uploadFile(file.getOriginalFilename(), file.getBytes());
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        var entity = new ResponseEntity<Void>(HttpStatus.CREATED);
+
+        logger.debug(String.format("Upload %s complete.", file));
+
+        return entity;
     }
 
 }
