@@ -41,7 +41,7 @@ Stretch:
 
 Ensure you have a Cosmos DB account with Gremlin enabled and a Gremlin graph database, and a storage account:
 
-Next, create a file in `/resources/database.properties` with the following content:
+Next, create a file in `/resources/application-dev.properties` with the following content:
 
 ```properties
 gremlin.hosts=$name$.gremlin.cosmosdb.azure.com
@@ -54,6 +54,9 @@ gremlin.maxContentLength=1000
 azure.storage.account.name=
 azure.storage.account.key=
 ```
+
+If you're using IntelliJ then you may want to set your Spring profile to 'dev' by changing the run config's
+VM Options to include: `-Dspring.profiles.active=dev`.
 
 Alternatively, these settings can also be configured from environment variables and the command line:
 
