@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 
 /**
  * Create/Update/Delete Services for Entity graphs.
@@ -19,10 +21,15 @@ public class EntityGraphService
 
 	private Logger logger = LoggerFactory.getLogger(EntityGraphService.class);
 
-	public EntityGraph createUpdate(EntityGraph entity)
+	public EntityGraph createUpdate(EntityGraph graph)
 	{
-		logger.debug("Create/update entity graph: " + entity.getId());
-		return repository.save(entity);
+		if (graph.getId() == null || graph.getId().isBlank())
+		{
+			graph.setId(UUID.randomUUID().toString());
+		}
+
+		logger.debug("Create/update entity graph: " + graph.getId());
+		return repository.save(graph);
 	}
 
 	public void delete(String id)

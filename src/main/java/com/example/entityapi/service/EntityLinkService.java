@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -51,6 +52,11 @@ public class EntityLinkService implements CrudlRestService<EntityLink>
 	@Override
 	public EntityLink createUpdate(EntityLink entityLink)
 	{
+		if (entityLink.getId() == null || entityLink.getId().isBlank())
+		{
+			entityLink.setId(UUID.randomUUID().toString());
+		}
+
 		logger.debug("Create/update entity link: " + entityLink.getId());
 		return repository.save(entityLink);
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.UUID;
 
 /**
  * CRUDL Services for Entity vertices.
@@ -51,6 +52,11 @@ public class EntityService implements CrudlRestService<Entity>
 	@Override
 	public Entity createUpdate(Entity entity)
 	{
+		if (entity.getId() == null || entity.getId().isBlank())
+		{
+			entity.setId(UUID.randomUUID().toString());
+		}
+
 		logger.debug("Create/update entity: " + entity.getId());
 		return repository.save(entity);
 	}
@@ -65,10 +71,17 @@ public class EntityService implements CrudlRestService<Entity>
 	public Entity comment(String id, Comment comment)
 	{
 		logger.debug("Add comment to entity: " + id);
+
+		if (comment.getId() == null || comment.getId().isBlank())
+		{
+			comment.setId(UUID.randomUUID().toString());
+		}
+
 		var entity = get(id);
 		var comments = entity.getComments();
 		comments.add(comment);
 		entity.setComments(comments);
+
 		return createUpdate(entity);
 	}
 }
