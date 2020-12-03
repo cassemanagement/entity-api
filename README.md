@@ -76,6 +76,22 @@ Further information about the Gremlin API and this setup can be found on this
 [MS Azure example](https://github.com/microsoft/spring-data-gremlin).
 
 
+## Limitations
+
+For Cosmos DB instances you will also need to set the following property in your `application.property`
+so this service knows to delete and re-create entities rather than attempt to update them due to 
+Cosmos DB throwing an error when you attempt to amend the databases partition key, even with the same value.
+This is due to the fact that partition keys are not a concern Gremlin, but are for Cosmos DB, therefore the 
+underlying library used here (as mentioned above) has some mild incompatibility with Cosmos DB.
+
+Property:
+```properties
+database.isComsosDb=true
+```
+
+[Issue raised on GitHub](https://github.com/microsoft/spring-data-gremlin/issues/232)
+
+
 ## Build/Run
 
 To build:

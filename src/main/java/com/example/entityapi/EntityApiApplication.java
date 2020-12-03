@@ -1,7 +1,6 @@
 package com.example.entityapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,21 +13,29 @@ import org.zalando.problem.violations.ConstraintViolationProblemModule;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = ErrorMvcAutoConfiguration.class)
-public class EntityApiApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(EntityApiApplication.class, args);
+public class EntityApiApplication
+{
+	public static void main(String[] args)
+	{
+		SpringApplication.run(EntityApiApplication.class,
+							  args
+							 );
 	}
 
 	/**
 	 * Creates object mapper with zalando problem modules.
 	 */
 	@Bean
-	public ObjectMapper objectMapper() {
-		return new ObjectMapper().registerModules(new ProblemModule(), new ConstraintViolationProblemModule());
+	public ObjectMapper objectMapper()
+	{
+		return new ObjectMapper().registerModules(new ProblemModule(),
+												  new ConstraintViolationProblemModule()
+												 );
 	}
 
 	@Bean
-	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer()
+	{
 		PropertySourcesPlaceholderConfigurer propsConfig = new PropertySourcesPlaceholderConfigurer();
 		propsConfig.setLocation(new ClassPathResource("git.properties"));
 		propsConfig.setIgnoreResourceNotFound(true);
