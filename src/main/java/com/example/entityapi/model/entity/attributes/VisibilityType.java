@@ -7,21 +7,21 @@ import lombok.Getter;
  */
 public enum VisibilityType
 {
-	ALWAYS("Always"),
-	MINIMISED("Minimised"),
-	HIDDEN("Hidden");
+    ALWAYS("Always"),
+    MINIMISED("Minimised"),
+    HIDDEN("Hidden");
 
-	@Getter
-	private final String type;
+    @Getter
+    private final String type;
 
-	VisibilityType(String type)
-	{
-		this.type = type;
-	}
+    VisibilityType(String type)
+    {
+        this.type = type;
+    }
 
-	@Override
-	public String toString()
-	{
-		return getType();
-	}
+    @Override
+    public String toString()
+    {
+        return getType();
+    }
 }

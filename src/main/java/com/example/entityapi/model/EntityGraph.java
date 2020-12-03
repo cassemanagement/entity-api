@@ -16,18 +16,18 @@ import java.util.List;
 @Data
 public class EntityGraph
 {
-	@Id
-	private String id;
+    @Id
+    private String id;
 
-	@EdgeSet
-	private List<EntityLink> edges;
+    @EdgeSet
+    private List<EntityLink> edges;
 
-	@VertexSet
-	private List<Entity> vertices;
+    @VertexSet
+    private List<Entity> vertices;
 
-	public EntityGraph()
-	{
-		this.edges = new ArrayList<>();
-		this.vertices = new ArrayList<>();
-	}
+    public EntityGraph()
+    {
+        this.edges = new ArrayList<>();
+        this.vertices = new ArrayList<>();
+    }
 }

@@ -9,13 +9,13 @@ import java.util.Collection;
  */
 public interface CrudlRestService<T>
 {
-	T get(String id);
+    T get(String id);
 
-	Collection<T> getByIds(Collection ids);
+    Collection<T> getByIds(Collection ids);
 
-	T createUpdate(T entity);
+    T createUpdate(T entity);
 
-	void delete(String id);
+    void delete(String id);
 
-	Collection<T> list();
+    Collection<T> list();
 }

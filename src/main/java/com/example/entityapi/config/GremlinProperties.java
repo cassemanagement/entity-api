@@ -17,19 +17,19 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "gremlin")
 class GremlinProperties
 {
-	private String endpoint;
+    private String endpoint;
 
-	private int port;
+    private int port;
 
-	private String username;
+    private String username;
 
-	private String password;
+    private String password;
 
-	private boolean sslEnabled;
+    private boolean sslEnabled;
 
-	private boolean telemetryAllowed = true;
+    private boolean telemetryAllowed = true;
 
-	private String serializer = Serializers.GRAPHSON.toString();
+    private String serializer = Serializers.GRAPHSON.toString();
 
-	private int maxContentLength;
+    private int maxContentLength;
 }

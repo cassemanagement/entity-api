@@ -15,35 +15,35 @@ import javax.validation.Valid;
 @RestController
 class EntityGraphController
 {
-	@Autowired
-	private EntityGraphService entityGraphService;
+    @Autowired
+    private EntityGraphService entityGraphService;
 
-	private Logger logger = LoggerFactory.getLogger(EntityGraphController.class);
+    private Logger logger = LoggerFactory.getLogger(EntityGraphController.class);
 
-	@PostMapping("/entity/graph")
-	public EntityGraph create(@RequestBody @Valid EntityGraph entityGraph)
-	{
-		logger.debug("Create new entity graph");
-		return entityGraphService.createUpdate(entityGraph);
-	}
+    @PostMapping("/entity/graph")
+    public EntityGraph create(@RequestBody @Valid EntityGraph entityGraph)
+    {
+        logger.debug("Create new entity graph");
+        return entityGraphService.createUpdate(entityGraph);
+    }
 
-	@PutMapping("/entity/graph/{id}")
-	public EntityGraph put(@PathVariable String id, @RequestBody @Valid EntityGraph entityGraph)
-	{
-		logger.debug("Update entity graph: " + id);
+    @PutMapping("/entity/graph/{id}")
+    public EntityGraph put(@PathVariable String id, @RequestBody @Valid EntityGraph entityGraph)
+    {
+        logger.debug("Update entity graph: " + id);
 
-		if (!entityGraph.getId().equals(id))
-		{
-			entityGraph.setId(id);
-		}
+        if (!entityGraph.getId().equals(id))
+        {
+            entityGraph.setId(id);
+        }
 
-		return entityGraphService.createUpdate(entityGraph);
-	}
+        return entityGraphService.createUpdate(entityGraph);
+    }
 
-	@DeleteMapping("/entity/graph/{id}")
-	public void delete(@PathVariable String id)
-	{
-		logger.debug("Delete entity graph: " + id);
-		entityGraphService.delete(id);
-	}
+    @DeleteMapping("/entity/graph/{id}")
+    public void delete(@PathVariable String id)
+    {
+        logger.debug("Delete entity graph: " + id);
+        entityGraphService.delete(id);
+    }
 }
