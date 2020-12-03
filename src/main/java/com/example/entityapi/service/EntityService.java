@@ -6,6 +6,7 @@ import com.example.entityapi.repository.EntityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -20,6 +21,9 @@ public class EntityService implements CrudlRestService<Entity>
 {
 	@Autowired
 	private EntityRepository repository;
+
+	@Value("${database.isComsosDb}")
+	private Boolean isComsosDb;
 
 	private Logger logger = LoggerFactory.getLogger(EntityService.class);
 
@@ -52,12 +56,32 @@ public class EntityService implements CrudlRestService<Entity>
 	@Override
 	public Entity createUpdate(Entity entity)
 	{
-		if (entity.getId() == null || entity.getId().isBlank())
+		var isUpdate = entity.getId() != null && !entity.getId().isBlank();
+		if (!isUpdate)
 		{
 			entity.setId(UUID.randomUUID().toString());
 		}
 
 		logger.debug("Create/update entity: " + entity.getId());
+
+		if (entity.getComments() != null)
+		{
+			for (var comment : entity.getComments())
+			{
+				if (comment.getId() == null || comment.getId().isBlank())
+				{
+					comment.setId(UUID.randomUUID().toString());
+				}
+			}
+		}
+
+		if (isComsosDb && isUpdate)
+		{
+			// entity has to be deleted and re-created due to this gremlin
+			// libraries incompatibility with Cosmos DB partition keys.
+			delete(entity.getId());
+		}
+
 		return repository.save(entity);
 	}
 
