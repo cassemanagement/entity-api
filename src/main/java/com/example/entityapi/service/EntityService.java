@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.UUID;
@@ -22,8 +23,8 @@ public class EntityService implements CrudlRestService<Entity>
 	@Autowired
 	private EntityRepository repository;
 
-	@Value("${database.isComsosDb}")
-	private Boolean isComsosDb;
+	@Value("#{new Boolean('${database.isCosmosDb}')}")
+	private Boolean isCosmosDb;
 
 	private Logger logger = LoggerFactory.getLogger(EntityService.class);
 
@@ -61,6 +62,15 @@ public class EntityService implements CrudlRestService<Entity>
 		{
 			entity.setId(UUID.randomUUID().toString());
 		}
+		else
+		{
+			// entity has to be deleted and re-created due to this gremlin
+			// libraries incompatibility with Cosmos DB partition keys.
+			if (isCosmosDb)
+			{
+				repository.deleteById(entity.getId());
+			}
+		}
 
 		logger.debug("Create/update entity: " + entity.getId());
 
@@ -73,13 +83,6 @@ public class EntityService implements CrudlRestService<Entity>
 					comment.setId(UUID.randomUUID().toString());
 				}
 			}
-		}
-
-		if (isComsosDb && isUpdate)
-		{
-			// entity has to be deleted and re-created due to this gremlin
-			// libraries incompatibility with Cosmos DB partition keys.
-			delete(entity.getId());
 		}
 
 		return repository.save(entity);
@@ -103,6 +106,10 @@ public class EntityService implements CrudlRestService<Entity>
 
 		var entity = get(id);
 		var comments = entity.getComments();
+		if (comments == null)
+		{
+			comments = new ArrayList<>();
+		}
 		comments.add(comment);
 		entity.setComments(comments);
 
