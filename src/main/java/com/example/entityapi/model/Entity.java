@@ -23,27 +23,28 @@ import java.util.List;
 @NoArgsConstructor
 public class Entity
 {
-	@Id
-	private String id;
+    @Id
+    private String id;
 
-	@NotEmpty(message = "Please enter a name")
-	private String name;
+    @NotEmpty(message = "Please enter a name")
+    private String name;
 
-	@NotEmpty(message = "Please enter a type")
-	private String type;
+    @NotEmpty(message = "Please enter a type")
+    private String type;
 
-	private String description;
+    private String description;
 
-	@Valid
-	private List<Attribute> attributes;
+    @Valid
+    private List<Attribute> attributes;
 
-	@Valid
-	private List<Comment> comments;
+    @Valid
+    private List<Comment> comments;
 
-	private String createdBy;
+    private String createdBy;
 
-	// Date is used as only that is supported by Gremlin. JsonFormat is com.fasterxml.jackson (not org.apache.tinkerpop.shaded.jackson)
-	// so this annotation os only used at the user boundary.
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-	private Date createdDate;
+    // Date is used as only that is supported by Gremlin.
+    // JsonFormat is com.fasterxml.jackson (not org.apache.tinkerpop.shaded.jackson)
+    // so this annotation os only used at the user boundary.
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private Date createdDate;
 }

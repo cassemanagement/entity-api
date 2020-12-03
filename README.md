@@ -86,7 +86,7 @@ underlying library used here (as mentioned above) has some mild incompatibility 
 
 Property:
 ```properties
-database.isComsosDb=true
+database.isCosmosDb=true
 ```
 
 [Issue raised on GitHub](https://github.com/microsoft/spring-data-gremlin/issues/232)

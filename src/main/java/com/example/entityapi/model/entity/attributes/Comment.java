@@ -11,13 +11,13 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class Comment
 {
-	@Id
-	private String id;
+    @Id
+    private String id;
 
-	@NotEmpty(message = "Please enter a comment")
-	private String comment;
+    @NotEmpty(message = "Please enter a comment")
+    private String comment;
 
-	private String createdBy;
+    private String createdBy;
 
-	private String createdDate;
+    private String createdDate;
 }

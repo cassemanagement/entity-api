@@ -18,65 +18,65 @@ import java.util.Set;
 @RestController
 class EntityController
 {
-	@Autowired
-	private EntityService entityService;
+    @Autowired
+    private EntityService entityService;
 
-	private Logger logger = LoggerFactory.getLogger(EntityController.class);
+    private Logger logger = LoggerFactory.getLogger(EntityController.class);
 
-	@GetMapping("/entity/vertices")
-	public Collection<Entity> list()
-	{
-		logger.debug("List entities");
-		return entityService.list();
-	}
+    @GetMapping("/entity/vertices")
+    public Collection<Entity> list()
+    {
+        logger.debug("List entities");
+        return entityService.list();
+    }
 
-	@GetMapping("/entity/vertices/vertex/{id}")
-	public Entity get(@PathVariable String id)
-	{
-		logger.debug("Get entity: " + id);
-		return entityService.get(id);
-	}
+    @GetMapping("/entity/vertices/vertex/{id}")
+    public Entity get(@PathVariable String id)
+    {
+        logger.debug("Get entity: " + id);
+        return entityService.get(id);
+    }
 
-	@GetMapping("/entity/vertices/find")
-	public Collection<Entity> find(@RequestBody Set<String> ids)
-	{
-		logger.debug("Find entities by ids");
-		return entityService.getByIds(ids);
-	}
+    @GetMapping("/entity/vertices/find")
+    public Collection<Entity> find(@RequestBody Set<String> ids)
+    {
+        logger.debug("Find entities by ids");
+        return entityService.getByIds(ids);
+    }
 
-	@PostMapping("/entity/vertices")
-	public Entity create(@RequestBody @Valid Entity entity)
-	{
-		logger.debug("Create new entity");
-		return entityService.createUpdate(entity);
-	}
+    @PostMapping("/entity/vertices")
+    public Entity create(@RequestBody @Valid Entity entity)
+    {
+        logger.debug("Create new entity");
+        return entityService.createUpdate(entity);
+    }
 
-	@PutMapping("/entity/vertices/vertex/{id}")
-	public Entity put(@PathVariable String id, @RequestBody @Valid Entity entity)
-	{
-		logger.debug("Update entity: " + id);
+    @PutMapping("/entity/vertices/vertex/{id}")
+    public Entity put(@PathVariable String id, @RequestBody @Valid Entity entity)
+    {
+        logger.debug("Update entity: " + id);
 
-		if (!entity.getId().equals(id))
-		{
-			entity.setId(id);
-		}
+        if (!entity.getId().equals(id))
+        {
+            entity.setId(id);
+        }
 
-		return entityService.createUpdate(entity);
-	}
+        return entityService.createUpdate(entity);
+    }
 
-	@DeleteMapping("/entity/vertices/vertex/{id}")
-	public void delete(@PathVariable String id)
-	{
-		logger.debug("Delete entity: " + id);
-		entityService.delete(id);
-	}
+    @DeleteMapping("/entity/vertices/vertex/{id}")
+    public void delete(@PathVariable String id)
+    {
+        logger.debug("Delete entity: " + id);
+        entityService.delete(id);
+    }
 
-	@PatchMapping("/entity/vertices/vertex/{id}/comment")
-	public Entity comment(@PathVariable String id, @RequestBody @Valid Comment comment)
-	{
-		logger.debug("Add comment to entity: " + id);
-		return entityService.comment(id,
-									 comment
-									);
-	}
+    @PatchMapping("/entity/vertices/vertex/{id}/comment")
+    public Entity comment(@PathVariable String id, @RequestBody @Valid Comment comment)
+    {
+        logger.debug("Add comment to entity: " + id);
+        return entityService.comment(id,
+                                     comment
+        );
+    }
 }

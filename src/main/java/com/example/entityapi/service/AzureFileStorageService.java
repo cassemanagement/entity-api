@@ -32,10 +32,11 @@ public class AzureFileStorageService implements FileStorageService
     private String createConnectionString()
     {
 
-        return String.format("DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s;EndpointSuffix=core.windows.net",
-                             storageAccountName,
-                             storageAccountKey
-                            );
+        return String.format(
+                "DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s;EndpointSuffix=core.windows.net",
+                storageAccountName,
+                storageAccountKey
+        );
     }
 
     public void uploadFile(String fileName, byte[] data)
@@ -43,7 +44,7 @@ public class AzureFileStorageService implements FileStorageService
 
         logger.debug(String.format("Upload file %s.",
                                    fileName
-                                  ));
+        ));
 
         ShareDirectoryClient dirClient = new ShareFileClientBuilder().connectionString(createConnectionString())
                                                                      .shareName(shareName)
@@ -54,11 +55,11 @@ public class AzureFileStorageService implements FileStorageService
         fileClient.create(data.length);
         fileClient.upload(new ByteArrayInputStream(data),
                           data.length
-                         );
+        );
 
         logger.debug(String.format("Upload file %s complete.",
                                    fileName
-                                  ));
+        ));
     }
 
     public byte[] downloadFile(String fileName)
@@ -66,7 +67,7 @@ public class AzureFileStorageService implements FileStorageService
 
         logger.debug(String.format("Download file %s.",
                                    fileName
-                                  ));
+        ));
 
         ShareDirectoryClient dirClient = new ShareFileClientBuilder().connectionString(createConnectionString())
                                                                      .shareName(shareName)
@@ -79,7 +80,7 @@ public class AzureFileStorageService implements FileStorageService
 
         logger.debug(String.format("Download file %s complete.",
                                    fileName
-                                  ));
+        ));
 
         return stream.toByteArray();
     }

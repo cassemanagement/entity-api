@@ -15,31 +15,29 @@ import org.zalando.problem.violations.ConstraintViolationProblemModule;
 @EnableAutoConfiguration(exclude = ErrorMvcAutoConfiguration.class)
 public class EntityApiApplication
 {
-	public static void main(String[] args)
-	{
-		SpringApplication.run(EntityApiApplication.class,
-							  args
-							 );
-	}
+    public static void main(String[] args)
+    {
+        SpringApplication.run(EntityApiApplication.class, args);
+    }
 
-	/**
-	 * Creates object mapper with zalando problem modules.
-	 */
-	@Bean
-	public ObjectMapper objectMapper()
-	{
-		return new ObjectMapper().registerModules(new ProblemModule(),
-												  new ConstraintViolationProblemModule()
-												 );
-	}
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer placeholderConfigurer()
+    {
+        PropertySourcesPlaceholderConfigurer propsConfig = new PropertySourcesPlaceholderConfigurer();
+        propsConfig.setLocation(new ClassPathResource("git.properties"));
+        propsConfig.setIgnoreResourceNotFound(true);
+        propsConfig.setIgnoreUnresolvablePlaceholders(true);
+        return propsConfig;
+    }
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer()
-	{
-		PropertySourcesPlaceholderConfigurer propsConfig = new PropertySourcesPlaceholderConfigurer();
-		propsConfig.setLocation(new ClassPathResource("git.properties"));
-		propsConfig.setIgnoreResourceNotFound(true);
-		propsConfig.setIgnoreUnresolvablePlaceholders(true);
-		return propsConfig;
-	}
+    /**
+     * Creates object mapper with zalando problem modules.
+     */
+    @Bean
+    public ObjectMapper objectMapper()
+    {
+        return new ObjectMapper().registerModules(new ProblemModule(),
+                                                  new ConstraintViolationProblemModule()
+        );
+    }
 }

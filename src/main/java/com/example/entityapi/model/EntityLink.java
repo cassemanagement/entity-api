@@ -17,22 +17,22 @@ import java.util.Map;
 @Data
 public class EntityLink
 {
-	@Id
-	private String id;
+    @Id
+    private String id;
 
-	private String name;
+    private String name;
 
-	@EdgeFrom
-	@NotNull(message = "Please provide start vertex")
-	private Entity from;
+    @EdgeFrom
+    @NotNull(message = "Please provide start vertex")
+    private Entity from;
 
-	@EdgeTo
-	@NotNull(message = "Please provide end vertex")
-	private Entity to;
+    @EdgeTo
+    @NotNull(message = "Please provide end vertex")
+    private Entity to;
 
-	private Map<String, Object> properties = new HashMap<>();
+    private Map<String, Object> properties = new HashMap<>();
 
-	private String createdBy;
+    private String createdBy;
 
-	private String createdDate;
+    private String createdDate;
 }

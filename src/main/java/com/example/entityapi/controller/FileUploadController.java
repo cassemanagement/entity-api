@@ -18,60 +18,54 @@ import java.net.URLConnection;
 public class FileUploadController
 {
 
-	private final static Logger logger = LogManager.getLogger(FileUploadController.class);
+    private final static Logger logger = LogManager.getLogger(FileUploadController.class);
 
-	private final FileStorageService storageService;
+    private final FileStorageService storageService;
 
-	@Autowired
-	public FileUploadController(FileStorageService storageService)
-	{
-		this.storageService = storageService;
-	}
+    @Autowired
+    public FileUploadController(FileStorageService storageService)
+    {
+        this.storageService = storageService;
+    }
 
-	@GetMapping("/files/{filename:.+}")
-	@ResponseBody
-	public ResponseEntity<byte[]> serveFile(@PathVariable String filename)
-	{
+    @GetMapping("/files/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<byte[]> serveFile(@PathVariable String filename)
+    {
 
-		logger.debug(String.format("Serving %s.",
-								   filename
-								  ));
+        logger.debug(String.format("Serving %s.",
+                                   filename
+        ));
 
-		var data = storageService.downloadFile(filename);
-		// Set headers
-		final HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.parseMediaType(URLConnection.guessContentTypeFromName(filename)));
+        var data = storageService.downloadFile(filename);
+        // Set headers
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType(URLConnection.guessContentTypeFromName(filename)));
 
-		var entity = new ResponseEntity<byte[]>(data,
-												headers,
-												HttpStatus.OK
-		);
+        var entity = new ResponseEntity<byte[]>(data,
+                                                headers,
+                                                HttpStatus.OK
+        );
 
-		logger.debug(String.format("Serving %s complete.",
-								   filename
-								  ));
+        logger.debug(String.format("Serving %s complete.",
+                                   filename
+        ));
 
-		return entity;
-	}
+        return entity;
+    }
 
-	@PostMapping("/files/")
-	public ResponseEntity<Void> uploadFile(@RequestParam("file") MultipartFile file) throws IOException
-	{
+    @PostMapping("/files/")
+    public ResponseEntity<Void> uploadFile(@RequestParam("file") MultipartFile file) throws IOException
+    {
 
-		logger.debug(String.format("Upload %s.",
-								   file
-								  ));
+        logger.debug(String.format("Upload %s.", file));
 
-		storageService.uploadFile(file.getOriginalFilename(),
-								  file.getBytes()
-								 );
-		var entity = new ResponseEntity<Void>(HttpStatus.CREATED);
+        storageService.uploadFile(file.getOriginalFilename(), file.getBytes());
+        var entity = new ResponseEntity<Void>(HttpStatus.CREATED);
 
-		logger.debug(String.format("Upload %s complete.",
-								   file
-								  ));
+        logger.debug(String.format("Upload %s complete.", file));
 
-		return entity;
-	}
+        return entity;
+    }
 
 }

@@ -10,15 +10,14 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class Attribute
 {
-	@NotEmpty(message = "Please enter an attribute key")
-	private String key;
+    boolean isRequired = false;
+    VisibilityType visibility = VisibilityType.MINIMISED;
 
-	@NotEmpty(message = "Please enter an attribute value")
-	private String value;
+    @NotEmpty(message = "Please enter an attribute key")
+    private String key;
 
-	private AttributeType type = AttributeType.STRING;
+    @NotEmpty(message = "Please enter an attribute value")
+    private String value;
 
-	boolean isRequired = false;
-
-	VisibilityType visibility = VisibilityType.MINIMISED;
+    private AttributeType type = AttributeType.STRING;
 }

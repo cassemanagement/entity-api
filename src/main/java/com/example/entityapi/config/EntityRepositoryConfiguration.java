@@ -15,20 +15,20 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(GremlinProperties.class)
 public class EntityRepositoryConfiguration extends AbstractGremlinConfiguration
 {
-	@Autowired
-	private GremlinProperties gremlinProps;
+    @Autowired
+    private GremlinProperties gremlinProps;
 
-	@Override
-	public GremlinConfig getGremlinConfig()
-	{
-		return new GremlinConfig(gremlinProps.getEndpoint(),
-								 gremlinProps.getPort(),
-								 gremlinProps.getUsername(),
-								 gremlinProps.getPassword(),
-								 gremlinProps.isSslEnabled(),
-								 gremlinProps.isTelemetryAllowed(),
-								 gremlinProps.getSerializer(),
-								 gremlinProps.getMaxContentLength()
-		);
-	}
+    @Override
+    public GremlinConfig getGremlinConfig()
+    {
+        return new GremlinConfig(gremlinProps.getEndpoint(),
+                                 gremlinProps.getPort(),
+                                 gremlinProps.getUsername(),
+                                 gremlinProps.getPassword(),
+                                 gremlinProps.isSslEnabled(),
+                                 gremlinProps.isTelemetryAllowed(),
+                                 gremlinProps.getSerializer(),
+                                 gremlinProps.getMaxContentLength()
+        );
+    }
 }
