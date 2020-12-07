@@ -11,7 +11,8 @@ import javax.validation.constraints.NotEmpty;
 public class Attribute
 {
     boolean isRequired = false;
-    VisibilityType visibility = VisibilityType.MINIMISED;
+
+    private String label;
 
     @NotEmpty(message = "Please enter an attribute key")
     private String key;

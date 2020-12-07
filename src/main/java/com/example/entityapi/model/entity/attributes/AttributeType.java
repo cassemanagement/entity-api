@@ -7,10 +7,11 @@ import lombok.Getter;
  */
 public enum AttributeType
 {
-    STRING("String"),
-    NUMBER("Number"),
-    DATE("Date"),
-    BOOLEAN("Boolean");
+    ENTITY("ENTITY"),
+    STRING("STRING"),
+    NUMBER("NUMBER"),
+    DATE("DATE"),
+    BOOLEAN("BOOLEAN");
 
     @Getter
     private final String type;

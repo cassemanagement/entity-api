@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * CRUDL Services for Entity vertices.
@@ -23,6 +20,9 @@ public class EntityService implements CrudlRestService<Entity>
 {
     @Autowired
     private EntityRepository repository;
+
+    @Autowired
+    private UserService userService;
 
     @Value("#{new Boolean('${database.isCosmosDb}')}")
     private Boolean isCosmosDb;
@@ -61,6 +61,13 @@ public class EntityService implements CrudlRestService<Entity>
         if (StringUtils.isBlank(entity.getId()))
         {
             entity.setId(UUID.randomUUID().toString());
+
+            if(entity.getCreatedDate() == null){
+                entity.setCreatedDate(new Date());
+            }
+            if(entity.getCreatedBy() == null){
+                entity.setCreatedBy(userService.getUsername());
+            }
         }
         else if (isCosmosDb)
         {
@@ -78,6 +85,13 @@ public class EntityService implements CrudlRestService<Entity>
                 if (StringUtils.isBlank(comment.getId()))
                 {
                     comment.setId(UUID.randomUUID().toString());
+
+                    if(comment.getCreatedDate() == null){
+                        entity.setCreatedDate(new Date());
+                    }
+                    if(comment.getCreatedBy() == null){
+                        entity.setCreatedBy(userService.getUsername());
+                    }
                 }
             }
         }
