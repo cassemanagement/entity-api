@@ -58,7 +58,7 @@ public class EntityService implements CrudlRestService<Entity>
     @Override
     public Entity createUpdate(Entity entity)
     {
-        if (!StringUtils.isBlank(entity.getId()))
+        if (StringUtils.isBlank(entity.getId()))
         {
             entity.setId(UUID.randomUUID().toString());
         }
