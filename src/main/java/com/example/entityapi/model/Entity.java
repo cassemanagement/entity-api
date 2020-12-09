@@ -2,6 +2,7 @@ package com.example.entityapi.model;
 
 import com.example.entityapi.model.entity.attributes.Attribute;
 import com.example.entityapi.model.entity.attributes.Comment;
+import com.example.entityapi.model.entity.workflow.WorkflowState;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.microsoft.spring.data.gremlin.annotation.Vertex;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,8 @@ public class Entity
     private String type;
 
     private String description;
+
+    private WorkflowState state;
 
     @Valid
     private List<Attribute> attributes;
