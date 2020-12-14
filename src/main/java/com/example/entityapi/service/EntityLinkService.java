@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -21,6 +22,9 @@ public class EntityLinkService implements CrudlRestService<EntityLink>
 {
     @Autowired
     private EntityLinkRepository repository;
+
+    @Autowired
+    private UserService userService;
 
     private Logger logger = LoggerFactory.getLogger(EntityLinkService.class);
 
@@ -56,6 +60,15 @@ public class EntityLinkService implements CrudlRestService<EntityLink>
         if (StringUtils.isBlank(entityLink.getId()))
         {
             entityLink.setId(UUID.randomUUID().toString());
+
+            if (entityLink.getCreatedDate() == null)
+            {
+                entityLink.setCreatedDate(new Date());
+            }
+            if (StringUtils.isBlank(entityLink.getCreatedBy()))
+            {
+                entityLink.setCreatedBy(userService.getUsername());
+            }
         }
 
         logger.debug("Create/update entity link: " + entityLink.getId());

@@ -65,7 +65,8 @@ public class EntityService implements CrudlRestService<Entity>
             if(entity.getCreatedDate() == null){
                 entity.setCreatedDate(new Date());
             }
-            if(entity.getCreatedBy() == null){
+            if (StringUtils.isBlank(entity.getCreatedBy()))
+            {
                 entity.setCreatedBy(userService.getUsername());
             }
         }
@@ -113,6 +114,15 @@ public class EntityService implements CrudlRestService<Entity>
         if (StringUtils.isBlank(comment.getId()))
         {
             comment.setId(UUID.randomUUID().toString());
+
+            if (comment.getCreatedDate() == null)
+            {
+                comment.setCreatedDate(new Date());
+            }
+            if (StringUtils.isBlank(comment.getCreatedBy()))
+            {
+                comment.setCreatedBy(userService.getUsername());
+            }
         }
 
         var entity = get(id);
