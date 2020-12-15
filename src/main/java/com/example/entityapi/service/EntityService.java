@@ -78,25 +78,6 @@ public class EntityService implements CrudlRestService<Entity>
         }
 
         logger.debug("Create/update entity: " + entity.getId());
-
-        if (entity.getComments() != null)
-        {
-            for (var comment : entity.getComments())
-            {
-                if (StringUtils.isBlank(comment.getId()))
-                {
-                    comment.setId(UUID.randomUUID().toString());
-
-                    if(comment.getCreatedDate() == null){
-                        entity.setCreatedDate(new Date());
-                    }
-                    if(comment.getCreatedBy() == null){
-                        entity.setCreatedBy(userService.getUsername());
-                    }
-                }
-            }
-        }
-
         return repository.save(entity);
     }
 
