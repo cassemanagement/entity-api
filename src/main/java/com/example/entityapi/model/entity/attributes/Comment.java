@@ -1,9 +1,11 @@
 package com.example.entityapi.model.entity.attributes;
 
 import lombok.Data;
+import org.apache.tinkerpop.shaded.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 
 /**
  * Model for comments.
@@ -19,5 +21,6 @@ public class Comment
 
     private String createdBy;
 
-    private String createdDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private Date createdDate;
 }
