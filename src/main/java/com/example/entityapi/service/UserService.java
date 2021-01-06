@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService
 {
-    public String getUsername(){
+    public String getUsername()
+    {
         return "Inspector Purrito";
     }
 }

@@ -44,6 +44,13 @@ class EntityController
         return entityService.getByIds(ids);
     }
 
+    @GetMapping("/entity/vertices/type/{type}")
+    public Collection<Entity> findByType(@PathVariable String type)
+    {
+        logger.debug("Find entities by type");
+        return entityService.findByType(type);
+    }
+
     @PostMapping("/entity/vertices")
     public Entity create(@RequestBody @Valid Entity entity)
     {

@@ -62,7 +62,8 @@ public class EntityService implements CrudlRestService<Entity>
         {
             entity.setId(UUID.randomUUID().toString());
 
-            if(entity.getCreatedDate() == null){
+            if (entity.getCreatedDate() == null)
+            {
                 entity.setCreatedDate(new Date());
             }
             if (StringUtils.isBlank(entity.getCreatedBy()))
@@ -77,6 +78,9 @@ public class EntityService implements CrudlRestService<Entity>
             repository.deleteById(entity.getId());
         }
 
+        // ensure type is upper case
+        entity.setType(entity.getType().toUpperCase());
+
         logger.debug("Create/update entity: " + entity.getId());
         return repository.save(entity);
     }
@@ -88,6 +92,13 @@ public class EntityService implements CrudlRestService<Entity>
         repository.deleteById(id);
     }
 
+    /**
+     * Add a comment to the entity corresponding to the provided id.
+     *
+     * @param id      Id of entity to add a comment to.
+     * @param comment Comment details to be added.
+     * @return Amended entity.
+     */
     public Entity comment(String id, Comment comment)
     {
         logger.debug("Add comment to entity: " + id);
@@ -116,5 +127,18 @@ public class EntityService implements CrudlRestService<Entity>
         entity.setComments(comments);
 
         return createUpdate(entity);
+    }
+
+    /**
+     * Find entities related to the provided type.
+     *
+     * @param type Entity type to search for.
+     * @return List of entities of type.
+     * @apiNote Gremlin currently does not support case insensitive search, so this assumes all
+     * types are stored as upper case.
+     */
+    public Collection<Entity> findByType(String type)
+    {
+        return repository.findByType(type.toUpperCase());
     }
 }

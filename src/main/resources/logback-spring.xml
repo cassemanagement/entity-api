@@ -40,8 +40,8 @@
 
     <!-- switch to debug for Gremlin debugging. -->
     <logger name="org.apache.tinkerpop.gremlin.driver" level="info" additivity="false">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
     </logger>
 
     <!-- LOG "com.example*" at TRACE level -->
