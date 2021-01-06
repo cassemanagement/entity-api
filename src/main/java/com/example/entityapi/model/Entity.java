@@ -34,11 +34,15 @@ public class Entity
 
     private String description;
 
+    private String status;
+
     @Valid
     private List<Attribute> attributes;
 
     @Valid
     private List<Comment> comments;
+
+    private List<String> tags;
 
     private String createdBy;
 
