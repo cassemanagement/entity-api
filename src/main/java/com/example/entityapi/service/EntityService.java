@@ -129,6 +129,16 @@ public class EntityService implements CrudlRestService<Entity>
         return createUpdate(entity);
     }
 
+    public Entity progress(String id, String status)
+    {
+        logger.debug("Progress to entity (" + id + ") to: " + status);
+        var entity = get(id);
+        var workflow = entity.getWorkflow();
+        workflow.setStatus(status);
+        entity.setWorkflow(workflow);
+        return createUpdate(entity);
+    }
+
     /**
      * Find entities related to the provided type.
      *

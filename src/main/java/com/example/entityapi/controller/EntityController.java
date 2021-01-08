@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Set;
 
@@ -26,42 +27,42 @@ class EntityController
     @GetMapping("/entity/vertices")
     public Collection<Entity> list()
     {
-        logger.debug("List entities");
+        logger.debug("GET List entities");
         return entityService.list();
     }
 
     @GetMapping("/entity/vertices/vertex/{id}")
     public Entity get(@PathVariable String id)
     {
-        logger.debug("Get entity: " + id);
+        logger.debug("GET entity");
         return entityService.get(id);
     }
 
     @GetMapping("/entity/vertices/find")
     public Collection<Entity> find(@RequestBody Set<String> ids)
     {
-        logger.debug("Find entities by ids");
+        logger.debug("GET Find entities by ids");
         return entityService.getByIds(ids);
     }
 
     @GetMapping("/entity/vertices/type/{type}")
     public Collection<Entity> findByType(@PathVariable String type)
     {
-        logger.debug("Find entities by type");
+        logger.debug("GET Find entities by type");
         return entityService.findByType(type);
     }
 
     @PostMapping("/entity/vertices")
     public Entity create(@RequestBody @Valid Entity entity)
     {
-        logger.debug("Create new entity");
+        logger.debug("POST new entity");
         return entityService.createUpdate(entity);
     }
 
     @PutMapping("/entity/vertices/vertex/{id}")
     public Entity put(@PathVariable String id, @RequestBody @Valid Entity entity)
     {
-        logger.debug("Update entity: " + id);
+        logger.debug("PUT entity");
 
         if (!entity.getId().equals(id))
         {
@@ -74,16 +75,21 @@ class EntityController
     @DeleteMapping("/entity/vertices/vertex/{id}")
     public void delete(@PathVariable String id)
     {
-        logger.debug("Delete entity: " + id);
+        logger.debug("DELETE entity");
         entityService.delete(id);
     }
 
     @PatchMapping("/entity/vertices/vertex/{id}/comment")
     public Entity comment(@PathVariable String id, @RequestBody @Valid Comment comment)
     {
-        logger.debug("Add comment to entity: " + id);
-        return entityService.comment(id,
-                                     comment
-        );
+        logger.debug("PATCH comment to entity");
+        return entityService.comment(id, comment);
+    }
+
+    @PatchMapping("/entity/vertices/vertex/{id}/progress")
+    public Entity comment(@PathVariable String id, @RequestBody @NotEmpty String status)
+    {
+        logger.debug("PATCH Progress entity");
+        return entityService.progress(id, status);
     }
 }
