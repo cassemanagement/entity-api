@@ -1,5 +1,6 @@
 package com.example.entityapi.model;
 
+import com.example.entityapi.model.entity.Workflow;
 import com.example.entityapi.model.entity.attributes.Attribute;
 import com.example.entityapi.model.entity.attributes.Comment;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -34,7 +35,8 @@ public class Entity
 
     private String description;
 
-    private String status;
+    @Valid
+    private Workflow workflow;
 
     @Valid
     private List<Attribute> attributes;
