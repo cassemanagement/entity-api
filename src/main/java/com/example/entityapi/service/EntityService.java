@@ -1,6 +1,7 @@
 package com.example.entityapi.service;
 
 import com.example.entityapi.model.Entity;
+import com.example.entityapi.model.entity.Workflow;
 import com.example.entityapi.model.entity.attributes.Comment;
 import com.example.entityapi.repository.EntityRepository;
 import org.apache.commons.lang.StringUtils;
@@ -129,12 +130,34 @@ public class EntityService implements CrudlRestService<Entity>
         return createUpdate(entity);
     }
 
+    /**
+     * Change the workflow status of the provided entity.
+     *
+     * @param id     Entity to progress.
+     * @param status New status to progress to.
+     * @return Updated entity
+     */
     public Entity progress(String id, String status)
     {
         logger.debug("Progress to entity (" + id + ") to: " + status);
         var entity = get(id);
         var workflow = entity.getWorkflow();
         workflow.setStatus(status);
+        entity.setWorkflow(workflow);
+        return createUpdate(entity);
+    }
+
+    /**
+     * Update the workflow of the provided entity.
+     *
+     * @param id       Entity to progress.
+     * @param workflow New workflow.
+     * @return Updated entity
+     */
+    public Entity changeWorkflow(String id, Workflow workflow)
+    {
+        logger.debug("Change workflow of entity (" + id + ") to: " + workflow.getName() + "(" + workflow.getVersion() + ")");
+        var entity = get(id);
         entity.setWorkflow(workflow);
         return createUpdate(entity);
     }

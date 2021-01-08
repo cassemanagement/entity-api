@@ -1,6 +1,7 @@
 package com.example.entityapi.controller;
 
 import com.example.entityapi.model.Entity;
+import com.example.entityapi.model.entity.Workflow;
 import com.example.entityapi.model.entity.attributes.Comment;
 import com.example.entityapi.service.EntityService;
 import org.slf4j.Logger;
@@ -87,9 +88,16 @@ class EntityController
     }
 
     @PatchMapping("/entity/vertices/vertex/{id}/progress")
-    public Entity comment(@PathVariable String id, @RequestBody @NotEmpty String status)
+    public Entity progress(@PathVariable String id, @RequestBody @NotEmpty String status)
     {
         logger.debug("PATCH Progress entity");
         return entityService.progress(id, status);
+    }
+
+    @PatchMapping("/entity/vertices/vertex/{id}/workflow")
+    public Entity workflow(@PathVariable String id, @RequestBody @Valid Workflow workflow)
+    {
+        logger.debug("PATCH Amend entity workflow");
+        return entityService.changeWorkflow(id, workflow);
     }
 }
